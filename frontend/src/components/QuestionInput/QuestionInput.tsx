@@ -90,7 +90,7 @@ export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conv
         onChange={onQuestionChange}
         onKeyDown={onEnterPress}
       />
-      {OYD_ENABLED && !OYD_ENABLED && (
+      
         <div className={styles.fileInputContainer}>
           <input
             type="file"
@@ -106,7 +106,7 @@ export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conv
               aria-label='Upload Image'
             />
           </label>
-        </div>)}
+        </div>
       {base64Image && <img className={styles.uploadedImage} src={base64Image} alt="Uploaded Preview" />}
       <div
         className={styles.questionInputSendButtonContainer}
