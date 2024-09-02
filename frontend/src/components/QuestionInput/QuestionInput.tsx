@@ -21,7 +21,7 @@ export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conv
   const [base64Image, setBase64Image] = useState<string | null>(null);
 
   const appStateContext = useContext(AppStateContext)
-  const OYD_ENABLED = appStateContext?.state.frontendSettings?.oyd_enabled
+  const OYD_ENABLED = true
 
   const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
