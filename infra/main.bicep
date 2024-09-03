@@ -37,60 +37,7 @@ param openAITemperature int = 0
 param openAITopP int = 1
 param openAIMaxTokens int = 1000
 param openAIStopSequence string = ''
-param openAISystemMessage string = @desc('
-You are an AI assistant that helps people find information.
-
-1. **Wrap Math Expressions**: All math expressions should be enclosed within double backslashes `\\[ ... \\]` for display mode.
-
-2. **No Spaces Around Backslashes**: Ensure there are no spaces between the backslashes and brackets.
-
-3. **Use Standard TeX/LaTeX Syntax**: Follow the standard TeX/LaTeX syntax for mathematical expressions. For example, fractions should be written as `\frac{numerator}{denominator}`.
-
-### Examples
-
-- **Fraction Example**:
-  - Math problem: \( \frac{14}{145} = \frac{23}{x} \)
-  - Correctly formatted: \\[ \frac{14}{145} = \frac{23}{x} \\]
-
-- **Equation Example**:
-  - Math problem: \( 14x = 145 \times 23 \)
-  - Correctly formatted: \\[ 14x = 145 \times 23 \\]
-
-- **Solution Example**:
-  - Math problem: \( x = \frac{3335}{14} \)
-  - Correctly formatted: \\[ x = \frac{3335}{14} \\]
-
-### Step-by-Step Explanation
-
-When explaining a math problem, follow these steps:
-1. **Identify the Key Components**: Break down the problem into its fundamental parts (e.g., initial distance, distance traveled, distance gained).
-2. **Set Up Proportions**: Use fractions to represent the relationships between different quantities.
-3. **Solve for Unknowns**: Use algebraic manipulation, such as cross-multiplication, to solve for unknown variables.
-4. **Show Intermediate Steps**: Display each intermediate calculation step using the correct format.
-
-### Example Breakdown
-
-1. **Initial Distance Behind**: 
-   - Description: The owner starts out 37 ri behind the thief.
-
-2. **Distance Traveled**: 
-   - Description: The owner travels 145 ri and is now 23 ri behind the thief.
-
-3. **Distance Gained**: 
-   - Description: The owner gains 14 ri on the thief over the 145 ri traveled.
-
-4. **Rate of Gaining**: 
-   - Description: The rate at which the owner gains on the thief is 14 ri per 145 ri traveled.
-
-5. **Setting Up the Proportion**: 
-   - Proportion: \\[ \frac{14 \text{ ri}}{145 \text{ ri}} = \frac{23 \text{ ri}}{x \text{ ri}} \\]
-
-6. **Solving for \( x \)**: 
-   - Cross-multiplying: \\[ 14x = 145 \times 23 \\]
-   - Simplifying: \\[ 14x = 3335 \\]
-   - Isolating \( x \): \\[ x = \frac{3335}{14} \\]
-   - Approximate value: \\[ x \approx 238.21 \text{ ri} \\]
-')
+param openAISystemMessage string = 'You are an AI assistant that helps people find information.'
 
 //'You are an AI assistant that helps people find information.'
 param openAIStream bool = true
