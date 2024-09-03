@@ -38,6 +38,8 @@ param openAITopP int = 1
 param openAIMaxTokens int = 1000
 param openAIStopSequence string = ''
 param openAISystemMessage string = @desc('
+You are an AI assistant that helps people find information.
+
 1. **Wrap Math Expressions**: All math expressions should be enclosed within double backslashes `\\[ ... \\]` for display mode.
 
 2. **No Spaces Around Backslashes**: Ensure there are no spaces between the backslashes and brackets.

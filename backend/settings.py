@@ -118,7 +118,8 @@ class _AzureOpenAISettings(BaseSettings):
     logit_bias: Optional[dict] = None
     presence_penalty: Optional[confloat(ge=-2.0, le=2.0)] = 0.0
     frequency_penalty: Optional[confloat(ge=-2.0, le=2.0)] = 0.0
-    system_message: str = r"""
+    system_message: str = r"""You are an AI assistant that helps people find information.
+
 1. **Wrap Math Expressions**: All math expressions should be enclosed within double backslashes `\\[ ... \\]` for display mode.
 
 2. **No Spaces Around Backslashes**: Ensure there are no spaces between the backslashes and brackets.
