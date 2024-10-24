@@ -114,7 +114,7 @@ export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conv
         <input
           type="file"
           id="fileInput"
-          onChange={handleImageUpload}
+          onChange={handlePaste}
           onPaste={handlePaste}
           accept="image/*"
           className={styles.fileInput}
