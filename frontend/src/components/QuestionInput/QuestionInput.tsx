@@ -97,7 +97,7 @@ export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conv
   const sendQuestionDisabled = disabled || !question.trim()
 
   return (
-    <Stack horizontal className={styles.questionInputContainer} onPaste={handlePaste}>
+    <Stack horizontal className={styles.questionInputContainer}>
       <TextField
         className={styles.questionInputTextArea}
         placeholder={placeholder}
@@ -105,6 +105,7 @@ export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conv
         resizable={false}
         borderless
         value={question}
+        onPaste={handlePaste}
         onChange={onQuestionChange}
         onKeyDown={onEnterPress}
       />
@@ -114,6 +115,7 @@ export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conv
           type="file"
           id="fileInput"
           onChange={handleImageUpload}
+          onPaste={handlePaste}
           accept="image/*"
           className={styles.fileInput}
         />
