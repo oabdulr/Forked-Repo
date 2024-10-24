@@ -31,6 +31,18 @@ export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conv
     }
   };
 
+  const handlePaste = async (event: React.ClipboardEvent) => {
+    const items = event.clipboardData.items;
+    for (const item of items) {
+      if (item.type.startsWith('image/')) {
+        const file = item.getAsFile();
+        if (file) {
+          await convertToBase64(file);
+        }
+      }
+    }
+  };
+
   const convertToBase64 = async (file: Blob) => {
     const reader = new FileReader();
 
@@ -79,7 +91,7 @@ export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conv
   const sendQuestionDisabled = disabled || !question.trim()
 
   return (
-    <Stack horizontal className={styles.questionInputContainer}>
+    <Stack horizontal className={styles.questionInputContainer} onPaste={handlePaste}>
       <TextField
         className={styles.questionInputTextArea}
         placeholder={placeholder}
@@ -91,36 +103,40 @@ export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conv
         onKeyDown={onEnterPress}
       />
       
-        <div className={styles.fileInputContainer}>
-          <input
-            type="file"
-            id="fileInput"
-            onChange={(event) => handleImageUpload(event)}
-            accept="image/*"
-            className={styles.fileInput}
+      <div className={styles.fileInputContainer}>
+        <input
+          type="file"
+          id="fileInput"
+          onChange={handleImageUpload}
+          accept="image/*"
+          className={styles.fileInput}
+        />
+        <label htmlFor="fileInput" className={styles.fileLabel} aria-label='Upload Image'>
+          <FontIcon
+            className={styles.fileIcon}
+            iconName={'PhotoCollection'}
+            aria-label='Upload Image'
           />
-          <label htmlFor="fileInput" className={styles.fileLabel} aria-label='Upload Image'>
-            <FontIcon
-              className={styles.fileIcon}
-              iconName={'PhotoCollection'}
-              aria-label='Upload Image'
-            />
-          </label>
-        </div>
+        </label>
+      </div>
+      
       {base64Image && <img className={styles.uploadedImage} src={base64Image} alt="Uploaded Preview" />}
+      
       <div
         className={styles.questionInputSendButtonContainer}
         role="button"
         tabIndex={0}
         aria-label="Ask question button"
         onClick={sendQuestion}
-        onKeyDown={e => (e.key === 'Enter' || e.key === ' ' ? sendQuestion() : null)}>
+        onKeyDown={e => (e.key === 'Enter' || e.key === ' ' ? sendQuestion() : null)}
+      >
         {sendQuestionDisabled ? (
           <SendRegular className={styles.questionInputSendButtonDisabled} />
         ) : (
           <img src={Send} className={styles.questionInputSendButton} alt="Send Button" />
         )}
       </div>
+      
       <div className={styles.questionInputBottomBorder} />
     </Stack>
   )
