@@ -32,16 +32,22 @@ export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conv
   };
 
   const handlePaste = async (event: React.ClipboardEvent) => {
-    const items = event.clipboardData.items;
-    for (const item of items) {
-      if (item.type.startsWith('image/')) {
-        const file = item.getAsFile();
-        if (file) {
-          await convertToBase64(file);
-        }
+  const items = event.clipboardData.items;
+  console.log("Clipboard items:", items);
+  
+  for (const item of items) {
+    console.log("Item type:", item.type);
+    if (item.type.startsWith('image/')) {
+      const file = item.getAsFile();
+      if (file) {
+        console.log("Image file found:", file);
+        await convertToBase64(file);
+      } else {
+        console.log("No file found for item.");
       }
     }
-  };
+  }
+};
 
   const convertToBase64 = async (file: Blob) => {
     const reader = new FileReader();
